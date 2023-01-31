@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import tClases
+from .models import Tclases
 
 def prueba_API(request):
   return HttpResponse("<h1>Hola</h1>");
@@ -13,5 +13,5 @@ def obtener_listado_clases(request):
           diccionario['nombre'] = fila_sql.nombre
           diccionario['horarios'] = fila_sql.horarios
           respuesta_final.append(diccionario)
-         return JsonResponse(respuesta_final, safe=False)
+      return JsonResponse(respuesta_final, safe=False)
 # Create your views here.
