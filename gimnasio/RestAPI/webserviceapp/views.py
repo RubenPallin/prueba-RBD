@@ -13,6 +13,7 @@ def obtener_listado_clases(request):
           diccionario['id'] = fila_sql.id
           diccionario['nombre'] = fila_sql.nombre
           diccionario['horarios'] = fila_sql.horarios
+          diccionario['imagen'] = fila_sql.imagen
           respuesta_final.append(diccionario)
       return JsonResponse(respuesta_final, safe=False)
 
