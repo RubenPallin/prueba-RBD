@@ -2,6 +2,17 @@ CREATE DATABASE RBD_GYM;
 
 USE RBD_GYM;
 
+
+CREATE TABLE tCarrito (
+    ProductosId integer  NOT NULL  primary key auto_increment,
+    Nombre Varchar(400) NOT NULL,
+    Color Varchar(100),
+    Precio varchar(100),
+    Descripcion varchar(250) NOT NULL,
+    Imagen varchar(2000),
+    Cantidad int default 1;
+);
+
 CREATE TABLE tPersona (
 	IdPersona integer not null primary key auto_increment,
 	dni varchar(50),
@@ -23,7 +34,8 @@ create table tPedidos(
 create table tClases(
     Id integer primary key auto_increment,
     Nombre varchar(40) not null,
-    Horarios varchar(50)
+    Horarios varchar(50),
+    Imagen varchar(2000)
 );
 
 
@@ -59,11 +71,12 @@ insert into tPedidos(Fecha, Cantidad) VALUES ("2022-12-20", "1");
 insert into tPedidos(Fecha, Cantidad) VALUES ("2022-12-09", "3");
 
 
-insert into tClases(Nombre, Horarios) VALUES ("Yoga", "8:30");
-insert into tClases(Nombre, Horarios) VALUES ("Spinning", "12:30");
-insert into tClases(Nombre, Horarios) VALUES ("Boxeo", "17:00");
-insert into tClases(Nombre, Horarios) VALUES ("Pilates", "19:00");
-insert into tClases(Nombre, Horarios) VALUES ("Zumba", "21:00");
+insert into tClases(Nombre, Horarios, Imagen) VALUES ("Yoga", "8:30", "https://img.freepik.com/fotos-premium/mujer-haciendo-pose-yoga-foto-blanco-negro_148632-257.jpg");
+insert into tClases(Nombre, Horarios, Imagen) VALUES ("Spinning", "12:30", "https://www.fightfitness.cl/wp-content/uploads/2021/06/spinning-01-1.jpg");
+insert into tClases(Nombre, Horarios, Imagen) VALUES ("Crossfit", "14:00", "https://img.freepik.com/foto-gratis/pesos-ejercicio-pesas-fuerte-atletica_1139-709.jpg");
+insert into tClases(Nombre, Horarios, Imagen) VALUES ("Boxeo", "17:00", "https://fondosmil.com/fondo/28861.jpg");
+insert into tClases(Nombre, Horarios, Imagen) VALUES ("Pilates", "19:00", "https://p4.wallpaperbetter.com/wallpaper/703/841/205/black-and-white-workout-class-pilates-wallpaper-preview.jpg");
+insert into tClases(Nombre, Horarios, Imagen) VALUES ("Zumba", "21:00", "http://www.cursosyclasesd.com/web/contenido/curso_galeria_92faec3a7.jpg");
 
 
 
@@ -84,3 +97,4 @@ insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID)
 insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('BioTechUSA Shaker 600 ml','Blanco','12,66','Shaker de BioTechUSA para la mezcla perfecta de todos tus complementos nutricionales.Formato:Bote de 700 ml','https://contents.mediadecathlon.com/m10131669/k$70e04f94fd8527bbffd2a2dec7048e59/sq/biotechusa-shaker-600-ml-blanco.jpg?format=auto&f=800x0','2');
 insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('Agitador de acero inoxidable de 900 ml-SmartShake','Negro','18,90','Un agitador silencioso de alta calidad, diseño resistente, muy duradero y 100% impermeable, pesa sólo 170 gramos, gran abertura para facilitar la limpieza (sólo lavar a mano).','https://contents.mediadecathlon.com/m10084259/k$1b0a0c255d09f8dd8732773d98c0df96/sq/agitador-de-acero-inoxidable-de-900-ml-smartshake.jpg?format=auto&f=800x0','2');
 insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('Classic Shaker 500 ml','Azul','8,99','Tapón con doble cierre de seguridad «clic-clac» audible y garantía de cero fugas. Asa de transporte para que puedas llevarte el shaker en tus desplazamientos deportivos','https://contents.mediadecathlon.com/p2402366/k$529b12e6c813b2562902a8ef4d8fa350/sq/classic-shaker-500-ml-azul.jpg?format=auto&f=800x0','2');
+
