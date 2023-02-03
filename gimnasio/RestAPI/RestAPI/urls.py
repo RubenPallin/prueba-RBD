@@ -21,5 +21,6 @@ from webserviceapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('classe', views.prueba_API),
-    path('classes', views.obtener_listado_clases)
+    path('classes', views.obtener_listado_clases),
+    path('orders', views.obtener_listado_pedidos)
 ]

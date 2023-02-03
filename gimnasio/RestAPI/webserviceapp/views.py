@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from .models import Tclases
+from .models import Tclases, Tpedidos
 
 def prueba_API(request):
   return HttpResponse("<h1>Hola</h1>");
