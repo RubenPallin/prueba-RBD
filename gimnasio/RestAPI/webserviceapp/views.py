@@ -18,15 +18,15 @@ def obtener_listado_clases(request):
       return JsonResponse(respuesta_final, safe=False)
 
 def obtener_listado_pedidos(request):
-        lista = Tpedidos.objects.all()
+        lista2 = Tpedidos.objects.all()
         respuesta_final = []
-     for fila_sql in lista:
-        diccionario = {}
-        diccionario['id'] = fila_sql.id
-	diccionario['fecha'] = fila_sql.fecha
-        diccionario['cantidad'] = fila_sql.cantidad
-        respuesta_final.append(diccionario=
-     return JsonResponse(respuesta_final, safe=False)
+        for fila_sql in lista2:
+            diccionario = {}
+            diccionario['id'] = fila_sql.id
+	    diccionario['fecha'] = fila_sql.fecha
+            diccionario['cantidad'] = fila_sql.cantidad
+            respuesta_final.append(diccionario)
+        return JsonResponse(respuesta_final, safe=False)
 
 
 
