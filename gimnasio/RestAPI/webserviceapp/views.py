@@ -18,14 +18,22 @@ def obtener_listado_clases(request):
       return JsonResponse(respuesta_final, safe=False)
 
 def obtener_listado_pedidos(request):
-        lista2 = Tpedidos.objects.all()
-        respuesta_final = []
-        for fila_sql in lista2:
-            diccionario = {}
-            diccionario['id'] = fila_sql.id
-	    diccionario['fecha'] = fila_sql.fecha
-            diccionario['cantidad'] = fila_sql.cantidad
-            respuesta_final.append(diccionario)
-        return JsonResponse(respuesta_final, safe=False)
+      pedido = Tpedidos.objects.all()
+      productos = pedido.tproductos_set.all()
+      lista_productos = []
+      for fila_sql in productos:
+          diccionario = {}
+          diccionario['id'] = fila_producto_sql.id
+          diccionario['nombre'] = fila_producto_sql.nombre
+          diccionario['cantidad'] = fila_producto_sql.cantidad
+          diccionario['color'] = fila_producto_sql.color
+          lista_pedidos.append(diccionario)
+      resultado = {
+          'id': pedido.id,
+          'fecha': pedido.fecha,
+          'items': lista_productos
+        }
+        return JsonResponse(resultado, json_dumps_params={'ensure_ascii': False})  
+
 
 # Create your views here.
