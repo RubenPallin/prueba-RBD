@@ -32,8 +32,7 @@ def obtener_listado_pedidos(request):
           'id': pedido.id,
           'fecha': pedido.fecha,
           'items': lista_productos
-        }
-        return JsonResponse(resultado, json_dumps_params={'ensure_ascii': False})  
-
+                  }
+      return JsonResponse(resultado, json_dumps_params={'ensure_ascii': False})
 
 # Create your views here.
