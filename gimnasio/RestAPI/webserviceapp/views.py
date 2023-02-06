@@ -28,6 +28,4 @@ def obtener_listado_pedidos(request):
             respuesta_final.append(diccionario)
         return JsonResponse(respuesta_final, safe=False)
 
-
-
 # Create your views here.
