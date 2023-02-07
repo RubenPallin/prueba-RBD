@@ -22,15 +22,15 @@ def obtener_listado_clases(request):
 def obtener_listado_pedidos(request):
       pedido = Tpedidos.objects.all()
       resultado = []
-      for pedidos in pedido:
+      for fila_sql in pedido:
           productos = pedido.tproductos_set.all()
           lista_productos = []
       for fila_sql in productos:
           diccionario = {}
-          diccionario['id'] = fila_sql.id
-          diccionario['nombre'] = fila_sql.nombre
-          diccionario['cantidad'] = fila_sql.cantidad
-          diccionario['color'] = fila_sql.color
+          diccionario['id'] = fila_productos_sql.id
+          diccionario['nombre'] = fila_prodyctos_sql.nombre
+          diccionario['cantidad'] = fila_productos_sql.cantidad
+          diccionario['color'] = fila_productos_sql.color
           lista_pedidos.append(diccionario)
       resultado.append({
           'id': pedido.id,
