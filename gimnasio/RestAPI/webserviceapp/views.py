@@ -40,6 +40,18 @@ def obtener_listado_pedidos(request):
       return JsonResponse(resultado, json_dumps_params={'ensure_ascii': False})
 
 @csrf_exempt
+def get_clases(request, id_clase):
+	if request.method == 'GET':
+		lista = Tclases.objects.get(id = id_clase)
+		respuesta_final = {
+			"id": lista.id,
+			"nombre": lista.nombre,
+			"imagen": lista.imagen,
+			"horarios": lista.horarios
+}
+		return JsonResponse(respuesta_final, safe=False)
+
+@csrf_exempt
 def reserva_clase(request):
       if request.method != 'POST':
               return HttpResponse(status=405)
