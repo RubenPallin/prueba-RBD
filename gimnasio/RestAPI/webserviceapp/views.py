@@ -45,7 +45,7 @@ def reserva_clase(request):
       json_peticion = json.loads(request.body)
       clase = Tclases()
       clase.id = json_peticion['1']
-      clase.horario = json_peticion['2023-01-10']
+      clase.horarios = json_peticion['2023-01-10 18:00']
       clase.save()
       return JsonResponse({"status": "ok"})
 
