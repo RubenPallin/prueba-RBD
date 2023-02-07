@@ -23,7 +23,7 @@ def obtener_listado_pedidos(request):
       pedido = Tpedidos.objects.all()
       resultado = []
       for fila_sql in pedido:
-          productos = pedido.tproductos_set.all()
+          productos = Tproductos.objects.all()
           lista_productos = []
       for fila_sql in productos:
           diccionario = {}
