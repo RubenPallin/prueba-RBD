@@ -40,12 +40,14 @@ def obtener_listado_pedidos(request):
 @csrf_exempt
 def reserva_clase(request):
       if request.method != 'POST':
-              return None
+              return HttpResponse(status=405)
 
       json_peticion = json.loads(request.body)
       clase = Tclases()
       clase.id = json_peticion['1']
       clase.horarios = json_peticion['2023-01-10 18:00']
+      if not clase.id or not clase.horario:
+         return JsonResponse({"error": "faltan datos"})
       clase.save()
       return JsonResponse({"status": "ok"})
 
