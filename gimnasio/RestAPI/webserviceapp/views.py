@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from .models import Tclases, Tpedidos, Tproductos
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 def prueba_API(request):
   return HttpResponse("<h1>Hola</h1>");
@@ -34,5 +36,17 @@ def obtener_listado_pedidos(request):
           'items': lista_productos
                   }
       return JsonResponse(resultado, json_dumps_params={'ensure_ascii': False})
+
+@csrf_exempt
+def reserva_clase(request):
+      if request.method != 'POST':
+              return None
+
+      json_peticion = json.loads(request.body)
+      clase = Tclases()
+      clase.id = json_peticion['1']
+      clase.horario = json_peticion['2023-01-10']
+      clase.save()
+      return JsonResponse({"status": "ok"})
 
 # Create your views here.
