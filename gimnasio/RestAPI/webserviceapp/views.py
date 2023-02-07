@@ -43,14 +43,14 @@ def obtener_listado_pedidos(request):
 def reserva_clase(request):
       if request.method != 'POST':
               return HttpResponse(status=405)
-      data = json.loads(request.body)
-      if request.method == 'POST':
-         id = data.get('id')
-         horarios = data.get('horarios')
-
+      json_peticion = json.loads(request.body)
+      clase = Tclases()
+      clase.id = fila_sql.id
+      clase.fecha = fila_sql.fecha
+      clase.horarios = fila_sql.horarios
       if None in (id, horarios):
          return JsonResponse({"error": "faltan datos"})
-      clase = Tclase(id=id, horarios=horarios)
+
       clase.save()
       return JsonResponse({"status": "ok"})
 
