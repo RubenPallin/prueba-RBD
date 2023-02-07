@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('classe', views.prueba_API),
     path('classes', views.obtener_listado_clases),
-    path('orders', views.obtener_listado_pedidos)
+    path('orders', views.obtener_listado_pedidos),
+    path('calendar', views.reserva_clase)
 ]
