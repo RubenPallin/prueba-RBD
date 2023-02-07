@@ -34,6 +34,7 @@ create table tPedidos(
 create table tClases(
     Id integer primary key auto_increment,
     Nombre varchar(40) not null,
+    Fecha date,
     Horarios varchar(50),
     Imagen varchar(2000)
 );
@@ -71,12 +72,12 @@ insert into tPedidos(Fecha, Cantidad) VALUES ("2022-12-20", "1");
 insert into tPedidos(Fecha, Cantidad) VALUES ("2022-12-09", "3");
 
 
-insert into tClases(Nombre, Horarios, Imagen) VALUES ("Yoga", "8:30", "https://img.freepik.com/fotos-premium/mujer-haciendo-pose-yoga-foto-blanco-negro_148632-257.jpg");
-insert into tClases(Nombre, Horarios, Imagen) VALUES ("Spinning", "12:30", "https://www.fightfitness.cl/wp-content/uploads/2021/06/spinning-01-1.jpg");
-insert into tClases(Nombre, Horarios, Imagen) VALUES ("Crossfit", "14:00", "https://img.freepik.com/foto-gratis/pesos-ejercicio-pesas-fuerte-atletica_1139-709.jpg");
-insert into tClases(Nombre, Horarios, Imagen) VALUES ("Boxeo", "17:00", "https://fondosmil.com/fondo/28861.jpg");
-insert into tClases(Nombre, Horarios, Imagen) VALUES ("Pilates", "19:00", "https://p4.wallpaperbetter.com/wallpaper/703/841/205/black-and-white-workout-class-pilates-wallpaper-preview.jpg");
-insert into tClases(Nombre, Horarios, Imagen) VALUES ("Zumba", "21:00", "http://www.cursosyclasesd.com/web/contenido/curso_galeria_92faec3a7.jpg");
+insert into tClases(Nombre, Horarios, Fecha, Imagen) VALUES ("Yoga", "8:30", "2022-11-30", "https://img.freepik.com/fotos-premium/mujer-haciendo-pose-yoga-foto-blanco-negro_148632-257.jpg");
+insert into tClases(Nombre, Horarios, Fecha, Imagen) VALUES ("Spinning", "12:30", "2023-01-11", "https://www.fightfitness.cl/wp-content/uploads/2021/06/spinning-01-1.jpg");
+insert into tClases(Nombre, Horarios, Fecha, Imagen) VALUES ("Crossfit", "14:00", "2023-01-05", "https://img.freepik.com/foto-gratis/pesos-ejercicio-pesas-fuerte-atletica_1139-709.jpg");
+insert into tClases(Nombre, Horarios, Fecha, Imagen) VALUES ("Boxeo", "17:00", "2022-12-20", "https://fondosmil.com/fondo/28861.jpg");
+insert into tClases(Nombre, Horarios, Fecha, Imagen) VALUES ("Pilates", "19:00", "2022-12-09", "https://p4.wallpaperbetter.com/wallpaper/703/841/205/black-and-white-workout-class-pilates-wallpaper-preview.jpg");
+insert into tClases(Nombre, Horarios, Fecha, Imagen) VALUES ("Zumba", "21:00", "2022-11-09", "http://www.cursosyclasesd.com/web/contenido/curso_galeria_92faec3a7.jpg");
 
 
 
@@ -88,13 +89,13 @@ insert into tCategorias(Nombre, Imagen) values ('Suplementos','https://chemaargu
 
 
 
-insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('Impact Whey Protein', 'Blanco','11,99', 'Este suero de alta calidad incluye 21 g de proteína por ración', 'https://static.thcdn.com/images/large/webp//productimg/1600/1600/10530943-1224889444460882.jpg','3');
-insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('Clear Whey Isolate','Rojo','30,99', ' A partir de nuestro aislado de suero de leche hidrolizado de la más alta calidad, hemos diseñado una versión más ligera y refrescante más similar a un zumo que a un batido de proteínas convencional.', 'https://static.thcdn.com/images/large/webp//productimg/1600/1600/12081396-1994792209042321.jpg','3');
-insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('THE Whey','Blanca','43,99','Con 25 g de proteína por ración, a partir de una mezcla de proteína purificada única de concentrado de lactosuero, aislado de lactosuero y Lacprodan® HYDRO.','https://static.thcdn.com/images/large/webp//productimg/1600/1600/12968610-1775002146207435.jpg','3');
-insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('Pantalón corto Velocity', 'Verde frondoso', '27,99', 'Pantalón corto para hombre con tiro de 13 cm con bolsillos con cremallera','https://static.thcdn.com/images/large/webp//productimg/1600/1600/13763186-1895011271804925.jpg','1');
-insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('Sudadera con capucha y cremallera Tempo','Negro', '41,99','Sudadera con capucha y cremallera de corte recto para hombre','https://static.thcdn.com/images/large/webp//productimg/1600/1600/13459345-1414972603525218.jpg','1');
-insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('Camiseta sin mangas de entrenamiento con detalle gráfico','Negro','19,99', 'Camiseta sin mangas de corte recto', 'https://static.thcdn.com/images/large/webp//productimg/1600/1600/13115065-1504958671601910.jpg','1');
-insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('BioTechUSA Shaker 600 ml','Blanco','12,66','Shaker de BioTechUSA para la mezcla perfecta de todos tus complementos nutricionales.Formato:Bote de 700 ml','https://contents.mediadecathlon.com/m10131669/k$70e04f94fd8527bbffd2a2dec7048e59/sq/biotechusa-shaker-600-ml-blanco.jpg?format=auto&f=800x0','2');
-insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('Agitador de acero inoxidable de 900 ml-SmartShake','Negro','18,90','Un agitador silencioso de alta calidad, diseño resistente, muy duradero y 100% impermeable, pesa sólo 170 gramos, gran abertura para facilitar la limpieza (sólo lavar a mano).','https://contents.mediadecathlon.com/m10084259/k$1b0a0c255d09f8dd8732773d98c0df96/sq/agitador-de-acero-inoxidable-de-900-ml-smartshake.jpg?format=auto&f=800x0','2');
-insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('Classic Shaker 500 ml','Azul','8,99','Tapón con doble cierre de seguridad «clic-clac» audible y garantía de cero fugas. Asa de transporte para que puedas llevarte el shaker en tus desplazamientos deportivos','https://contents.mediadecathlon.com/p2402366/k$529b12e6c813b2562902a8ef4d8fa350/sq/classic-shaker-500-ml-azul.jpg?format=auto&f=800x0','2');
+insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('Impact Whey Protein', 'Blanco','11.99', 'Este suero de alta calidad incluye 21 g de proteína por ración', 'https://static.thcdn.com/images/large/webp//productimg/1600/1600/10530943-1224889444460882.jpg','3');
+insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('Clear Whey Isolate','Rojo','30.99', ' A partir de nuestro aislado de suero de leche hidrolizado de la más alta calidad, hemos diseñado una versión más ligera y refrescante más similar a un zumo que a un batido de proteínas convencional.', 'https://static.thcdn.com/images/large/webp//productimg/1600/1600/12081396-1994792209042321.jpg','3');
+insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('THE Whey','Blanca','43.99','Con 25 g de proteína por ración, a partir de una mezcla de proteína purificada única de concentrado de lactosuero, aislado de lactosuero y Lacprodan® HYDRO.','https://static.thcdn.com/images/large/webp//productimg/1600/1600/12968610-1775002146207435.jpg','3');
+insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('Pantalón corto Velocity', 'Verde frondoso', '27.99', 'Pantalón corto para hombre con tiro de 13 cm con bolsillos con cremallera','https://static.thcdn.com/images/large/webp//productimg/1600/1600/13763186-1895011271804925.jpg','1');
+insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('Sudadera con capucha y cremallera Tempo','Negro', '41.99','Sudadera con capucha y cremallera de corte recto para hombre','https://static.thcdn.com/images/large/webp//productimg/1600/1600/13459345-1414972603525218.jpg','1');
+insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('Camiseta sin mangas de entrenamiento con detalle gráfico','Negro','19.99', 'Camiseta sin mangas de corte recto', 'https://static.thcdn.com/images/large/webp//productimg/1600/1600/13115065-1504958671601910.jpg','1');
+insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('BioTechUSA Shaker 600 ml','Blanco','12.66','Shaker de BioTechUSA para la mezcla perfecta de todos tus complementos nutricionales.Formato:Bote de 700 ml','https://contents.mediadecathlon.com/m10131669/k$70e04f94fd8527bbffd2a2dec7048e59/sq/biotechusa-shaker-600-ml-blanco.jpg?format=auto&f=800x0','2');
+insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('Agitador de acero inoxidable de 900 ml-SmartShake','Negro','18.90','Un agitador silencioso de alta calidad, diseño resistente, muy duradero y 100% impermeable, pesa sólo 170 gramos, gran abertura para facilitar la limpieza (sólo lavar a mano).','https://contents.mediadecathlon.com/m10084259/k$1b0a0c255d09f8dd8732773d98c0df96/sq/agitador-de-acero-inoxidable-de-900-ml-smartshake.jpg?format=auto&f=800x0','2');
+insert into tProductos (Nombre, Color, Precio, Descripcion, Imagen, CategoriaID) values ('Classic Shaker 500 ml','Azul','8.99','Tapón con doble cierre de seguridad «clic-clac» audible y garantía de cero fugas. Asa de transporte para que puedas llevarte el shaker en tus desplazamientos deportivos','https://contents.mediadecathlon.com/p2402366/k$529b12e6c813b2562902a8ef4d8fa350/sq/classic-shaker-500-ml-azul.jpg?format=auto&f=800x0','2');
 
