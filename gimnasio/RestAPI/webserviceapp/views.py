@@ -21,20 +21,21 @@ def obtener_listado_clases(request):
 
 def obtener_listado_pedidos(request):
       pedido = Tpedidos.objects.all()
-      productos = pedido.tproductos_set.all()
-      lista_productos = []
+      for pedido in pedidos:
+          productos = pedido.tproductos_set.all()
+          lista_productos = []
       for fila_sql in productos:
           diccionario = {}
-          diccionario['id'] = fila_producto_sql.id
-          diccionario['nombre'] = fila_producto_sql.nombre
-          diccionario['cantidad'] = fila_producto_sql.cantidad
-          diccionario['color'] = fila_producto_sql.color
+          diccionario['id'] = fila_sql.id
+          diccionario['nombre'] = fila_sql.nombre
+          diccionario['cantidad'] = fila_sql.cantidad
+          diccionario['color'] = fila_sql.color
           lista_pedidos.append(diccionario)
-      resultado = {
+      resultado.append({
           'id': pedido.id,
           'fecha': pedido.fecha,
           'items': lista_productos
-                  }
+                  })
       return JsonResponse(resultado, json_dumps_params={'ensure_ascii': False})
 
 @csrf_exempt
