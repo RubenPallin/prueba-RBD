@@ -21,7 +21,8 @@ def obtener_listado_clases(request):
 
 def obtener_listado_pedidos(request):
       pedido = Tpedidos.objects.all()
-      for pedido in pedidos:
+      resultado = []
+      for pedidos in pedido:
           productos = pedido.tproductos_set.all()
           lista_productos = []
       for fila_sql in productos:
