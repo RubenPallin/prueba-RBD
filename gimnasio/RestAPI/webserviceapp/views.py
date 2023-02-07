@@ -23,14 +23,14 @@ def obtener_listado_pedidos(request):
       pedido = Tpedidos.objects.all()
       resultado = []
       for fila_sql in pedido:
-          productos = Tproductos.objects.all()
+          productos = pedido.tproductos_set.all()
           lista_productos = []
       for fila_sql in productos:
           diccionario = {}
-          diccionario['id'] = fila_productos_sql.id
-          diccionario['nombre'] = fila_prodyctos_sql.nombre
-          diccionario['cantidad'] = fila_productos_sql.cantidad
-          diccionario['color'] = fila_productos_sql.color
+          diccionario['id'] = fila_sql.id
+          diccionario['nombre'] = fila_sql.nombre
+          diccionario['cantidad'] = fila_sql.cantidad
+          diccionario['color'] = fila_sql.color
           lista_pedidos.append(diccionario)
       resultado.append({
           'id': pedido.id,
@@ -43,13 +43,14 @@ def obtener_listado_pedidos(request):
 def reserva_clase(request):
       if request.method != 'POST':
               return HttpResponse(status=405)
+      data = json.loads(request.body)
+      if request.method == 'POST':
+         id = data.get('id')
+         horarios = data.get('horarios')
 
-      json_peticion = json.loads(request.body)
-      clase = Tclases()
-      clase.id = json_peticion['1']
-      clase.horarios = json_peticion['2023-01-10 18:00']
-      if not clase.id or not clase.horario:
+      if None in (id, horarios):
          return JsonResponse({"error": "faltan datos"})
+      clase = Tclase(id=id, horarios=horarios)
       clase.save()
       return JsonResponse({"status": "ok"})
 
