@@ -71,7 +71,7 @@ def get_clases(request, id_clase):
 def reserva_clase(request):
       if not request.session.get('sessionToken'):
         return redirect('/login')
-    else:
+      else:
         headers = {'SessionToken': request.session.get('sessionToken')}
         data = {
             "id": request.POST.get('id'),
