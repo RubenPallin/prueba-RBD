@@ -68,23 +68,21 @@ def get_clases(request, id_clase):
 
 @csrf_exempt
 def reserva_clase(request):
-      if request.method != 'POST':
-              return HttpResponse(status=405)
-      json_peticion = json.loads(request.body)
-      clase = Tclases()
-
-      id = json_peticion.get('id')
-      fecha = json_peticion.get('fecha')
-      horarios = json_peticion.get('horarios')
-
-      if None in (id, fecha, horarios):
-         	return JsonResponse({"error": "faltan datos"})
-
-      clase.id = id
-      clase.fecha = fecha
-      clase.horarios = horarios
-
-      clase.save()
-      return JsonResponse({"status": "ok"})
+      if not request.session.get('sessionToken'):
+        return redirect('/login')
+    else:
+        headers = {'SessionToken': request.session.get('sessionToken')}
+        data = {
+            "id": request.POST.get('id'),
+            "fecha": request.POST.get('fecha'),
+            "horarios": request.POST.get('horarios')
+        }
+        response = requests.post('http://localhost:8000/calendar/' + str(id), data=data, headers=headers)
+        if response.status_code == 401:
+            return JsonResponse({'error': 'Invalid session token'})
+        elif response.status_code == 400:
+            return JsonResponse({'error': 'Error in data sent'})
+        else:
+            return JsonResponse(response.json())
 
 # Create your views here.
