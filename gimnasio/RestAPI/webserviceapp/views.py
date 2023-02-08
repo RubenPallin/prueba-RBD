@@ -1,4 +1,5 @@
 
+
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from .models import Tclases, Tpedidos, Tproductos
@@ -22,7 +23,7 @@ def obtener_listado_clases(request):
 
 def obtener_listado_pedidos(request):
         if request.method == 'GET':
-        session_token = request.headers.get('sessionToken')
+            session_token = request.headers.get('sessionToken')
         if session_token != 'sessionToken':
             return JsonResponse({'error': 'SessionToken inválido'}, status=401)
         
