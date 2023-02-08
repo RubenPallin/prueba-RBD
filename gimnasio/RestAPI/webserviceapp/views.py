@@ -57,34 +57,37 @@ def obtener_listado_pedidos(request):
 
 @csrf_exempt
 def get_clases(request, id_clase):
-	if request.method == 'GET':
-		lista = Tclases.objects.get(id = id_clase)
-		respuesta_final = {
-			"id": lista.id,
-			"nombre": lista.nombre,
-			"imagen": lista.imagen,
-			"horarios": lista.horarios
-		}
-		return JsonResponse(respuesta_final, safe=False)
+    if request.method == 'GET':
+        try:
+            clase = Tclases.objects.get(id=id_clase)
+        except Tclases.DoesNotExist:
+            return JsonResponse({'error': 'Clase not found'}, status=400)
 
-	elif request.method == 'POST':
-		persisted_token = request.headers.get('SessionToken')
-		if not persisted_token:
-        		return JsonResponse({'error': 'SessionToken not found'}, status=401)
-    		try:
-        		# Get calendar data with id=id
-        		calendar = Tclases.objects.get(id=id)
-    		except Calendar.DoesNotExist:
-        		return JsonResponse({'error': 'Calendar not found'}, status=400)
+        respuesta_final = {
+            "id": clase.id,
+            "nombre": clase.nombre,
+            "imagen": clase.imagen,
+            "horarios": clase.horarios
+        }
+        return JsonResponse(respuesta_final)
 
-    			# Validate SessionToken
+    elif request.method == 'POST':
+        persisted_token = request.headers.get('SessionToken')
+        if not persisted_token:
+            return JsonResponse({'error': 'SessionToken not found'}, status=401)
 
-   			 # Update calendar data
-    		data = json.loads(request.body)
-    		calendar.fecha = data['fecha']
-    		calendar.horarios = data['horarios']
-    		calendar.save()
+        try:
+            clase = Tclases.objects.get(id=id_clase)
+        except Tclases.DoesNotExist:
+            return JsonResponse({'error': 'Clase not found'}, status=400)
 
-    		return JsonResponse({'status': 'success'}, safe=False)
+        # Validate SessionToken
 
+        # Update clase data
+        data = json.loads(request.body)
+        clase.fecha = data.get('fecha')
+        clase.horarios = data.get('horarios')
+        clase.save()
+
+        return JsonResponse({'status': 'success'})
 	# Create your views here.
