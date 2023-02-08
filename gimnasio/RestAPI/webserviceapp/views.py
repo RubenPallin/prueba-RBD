@@ -23,32 +23,32 @@ def obtener_listado_pedidos(request):
         session_token = request.headers.get('SessionToken')
         if session_token != 'ASDFASDF':
             return JsonResponse({'error': 'Unauthorized'}, status=401)
-        orders = [
+        pedidos = [
             {
-                "orderDate": "2022-12-12T14:50:50Z",
+                "fecha": "2022-12-12T14:50:50Z",
                 "items": [
                     {
-                        "name": "Pantalón",
-                        "quantity": 1,
-                        "unitPrice": 16.99,
-                        "productId": 44
+                        "nombre": "Pantalón",
+                        "cantidad": 1,
+                        "precio": 16.99,
+                        "productosId": 44
                     }
                 ]
             },
             {
-                "orderDate": "2023-01-12T16:50:50Z",
+                "fecha": "2023-01-12T16:50:50Z",
                 "items": [
                     {
-                        "name": "Guantes de boxeo",
-                        "quantity": 3,
-                        "unitPrice": 12.99,
-                        "productId": 21
+                        "nombre": "Guantes de boxeo",
+                        "cantidad": 3,
+                        "precio": 12.99,
+                        "productosId": 21
                     }
                 ]
             },
         ]
 
-        return JsonResponse({'orders': orders}, status=200)
+        return JsonResponse({'pedidos': pedidos}, status=200)
 
 @csrf_exempt
 def get_clases(request, id_clase):
