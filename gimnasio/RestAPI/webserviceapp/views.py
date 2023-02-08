@@ -73,11 +73,17 @@ def reserva_clase(request):
               return HttpResponse(status=405)
       json_peticion = json.loads(request.body)
       clase = Tclases()
-      clase.id = fila_sql.id
-      clase.fecha = fila_sql.fecha
-      clase.horarios = fila_sql.horarios
-      if None in (id, horarios):
-         return JsonResponse({"error": "faltan datos"})
+
+      id = json_peticion.get('id')
+      fecha = json_peticion.get('fecha')
+      horarios = json_peticion.get('horarios')
+
+      if None in (id, fecha, horarios):
+         	return JsonResponse({"error": "faltan datos"})
+
+      clase.id = id
+      clase.fecha = fecha
+      clase.horarios = horarios
 
       clase.save()
       return JsonResponse({"status": "ok"})
