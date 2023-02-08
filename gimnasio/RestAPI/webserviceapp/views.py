@@ -21,35 +21,38 @@ def obtener_listado_clases(request):
       return JsonResponse(respuesta_final, safe=False)
 
 def obtener_listado_pedidos(request):
-        session_token = request.headers.get('SessionToken')
-        if session_token != 'ASDFASDF':
-            return JsonResponse({'error': 'Unauthorized'}, status=401)
-        pedidos = [
-            {
-                "fecha": "2022-12-12T14:50:50Z",
-                "items": [
-                    {
-                        "nombre": "Pantalón",
-                        "cantidad": 1,
-                        "precio": 16.99,
-                        "productosId": 44
-                    }
-                ]
-            },
-            {
-                "fecha": "2023-01-12T16:50:50Z",
-                "items": [
-                    {
-                        "nombre": "Guantes de boxeo",
-                        "cantidad": 3,
-                        "precio": 12.99,
-                        "productosId": 21
-                    }
-                ]
-            },
-        ]
-
-        return JsonResponse({'pedidos': pedidos}, status=200)
+        if request.method == 'GET':
+        session_token = request.headers.get('sessionToken')
+        if session_token != 'sessionToken':
+            return JsonResponse({'error': 'SessionToken inválido'}, status=401)
+        
+        # Obtener todos los pedidos de la base de datos
+        pedidos = Tpedidos.objects.all()
+        
+        orders = []
+        
+        # Iterar sobre cada pedido y agregar la información necesaria al arreglo 'orders'
+        for pedido in pedidos:
+            items = []
+            # Obtener todos los productos relacionados con el pedido actual
+            productos = Tproductos.objects.filter(productosid=1)
+            # Iterar sobre cada producto y agregar la información necesaria al arreglo 'items'
+            for producto in productos:
+                item = {
+                    "name": producto.descripcion,
+                    "quantity": producto.color,
+                    "unitPrice": producto.descripcion,
+                    "productId": producto.productosid
+                }
+                items.append(item)
+            
+            order = {
+                "orderDate": pedido.fecha,
+                "items": items
+            }
+            orders.append(order)
+        
+        return JsonResponse(orders, safe=False)
 
 @csrf_exempt
 def get_clases(request, id_clase):
