@@ -20,24 +20,35 @@ def obtener_listado_clases(request):
       return JsonResponse(respuesta_final, safe=False)
 
 def obtener_listado_pedidos(request):
-      pedido = Tpedidos.objects.all()
-      resultado = []
-      for fila_sql in pedido:
-          productos = pedido.tproductos_set.all()
-          lista_productos = []
-      for fila_sql in productos:
-          diccionario = {}
-          diccionario['id'] = fila_sql.id
-          diccionario['nombre'] = fila_sql.nombre
-          diccionario['cantidad'] = fila_sql.cantidad
-          diccionario['color'] = fila_sql.color
-          lista_pedidos.append(diccionario)
-      resultado.append({
-          'id': pedido.id,
-          'fecha': pedido.fecha,
-          'items': lista_productos
-                  })
-      return JsonResponse(resultado, json_dumps_params={'ensure_ascii': False})
+        session_token = request.headers.get('SessionToken')
+        if session_token != 'ASDFASDF':
+            return JsonResponse({'error': 'Unauthorized'}, status=401)
+        orders = [
+            {
+                "orderDate": "2022-12-12T14:50:50Z",
+                "items": [
+                    {
+                        "name": "Pantalón",
+                        "quantity": 1,
+                        "unitPrice": 16.99,
+                        "productId": 44
+                    }
+                ]
+            },
+            {
+                "orderDate": "2023-01-12T16:50:50Z",
+                "items": [
+                    {
+                        "name": "Guantes de boxeo",
+                        "quantity": 3,
+                        "unitPrice": 12.99,
+                        "productId": 21
+                    }
+                ]
+            },
+        ]
+
+        return JsonResponse({'orders': orders}, status=200)
 
 @csrf_exempt
 def get_clases(request, id_clase):
