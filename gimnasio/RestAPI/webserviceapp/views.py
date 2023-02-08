@@ -21,6 +21,7 @@ def obtener_listado_clases(request):
       return JsonResponse(respuesta_final, safe=False)
 
 def obtener_listado_pedidos(request):
+<<<<<<< HEAD
 	pedidos = Tpedidos.objects.all()
 	respuesta_final = []
 	for pedido in pedidos:
@@ -35,6 +36,37 @@ def obtener_listado_pedidos(request):
 		diccionario['precio'] = producto.precio
 		respuesta_final.append(diccionario)
 	return JsonResponse(respuesta_final, safe=False)
+=======
+        session_token = request.headers.get('SessionToken')
+        if session_token != 'ASDFASDF':
+            return JsonResponse({'error': 'Unauthorized'}, status=401)
+        pedidos = [
+            {
+                "fecha": "2022-12-12T14:50:50Z",
+                "items": [
+                    {
+                        "nombre": "Pantalón",
+                        "cantidad": 1,
+                        "precio": 16.99,
+                        "productosId": 44
+                    }
+                ]
+            },
+            {
+                "fecha": "2023-01-12T16:50:50Z",
+                "items": [
+                    {
+                        "nombre": "Guantes de boxeo",
+                        "cantidad": 3,
+                        "precio": 12.99,
+                        "productosId": 21
+                    }
+                ]
+            },
+        ]
+
+        return JsonResponse({'pedidos': pedidos}, status=200)
+>>>>>>> b50bab55b5e3e48b2ad2cb0feb713f8cd77b786a
 
 @csrf_exempt
 def get_clases(request, id_clase):
