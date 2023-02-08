@@ -67,22 +67,26 @@ def get_clases(request, id_clase):
 		return JsonResponse(respuesta_final, safe=False)
 
 @csrf_exempt
-def reserva_clase(request):
-      if not request.session.get('sessionToken'):
-        return redirect('/login')
-    else:
-        headers = {'SessionToken': request.session.get('sessionToken')}
-        data = {
-            "id": request.POST.get('id'),
-            "fecha": request.POST.get('fecha'),
-            "horarios": request.POST.get('horarios')
-        }
-        response = requests.post('http://localhost:8000/calendar/' + str(id), data=data, headers=headers)
-        if response.status_code == 401:
-            return JsonResponse({'error': 'Invalid session token'})
-        elif response.status_code == 400:
-            return JsonResponse({'error': 'Error in data sent'})
-        else:
-            return JsonResponse(response.json())
+def reserva_clase(request, id):
+    persisted_token = request.headers.get('SessionToken')
+    if not persisted_token:
+        return JsonResponse({'error': 'SessionToken not found'}, status=401)
+
+    try:
+        # Get calendar data with id=id
+        calendar = Calendar.objects.get(id=id)
+    except Calendar.DoesNotExist:
+        return JsonResponse({'error': 'Calendar not found'}, status=400)
+
+    # Validate SessionToken
+    # ...
+
+    # Update calendar data
+    data = json.loads(request.body)
+    calendar.fecha = data['fecha']
+    calendar.horarios = data['horarios']
+    calendar.save()
+
+    return JsonResponse({'status': 'success'})
 
 # Create your views here.
