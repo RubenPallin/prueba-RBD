@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('classe', views.prueba_API),
     path('classes', views.obtener_listado_clases),
-    path('orders', views.obtener_listado_pedidos),
+    path('orders/<int:idpersona>', views.obtener_listado_pedidos),
     path('calendar/<int:id_clase>', views.get_clases),
-    path('calendar', views.reserva_clases)
+    path('calendar/<int:id_clase>', views.reserva_clases)
 ]
