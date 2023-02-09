@@ -23,6 +23,6 @@ urlpatterns = [
     path('classe', views.prueba_API),
     path('classes', views.obtener_listado_clases),
     path('orders', views.obtener_listado_pedidos),
-    path('calendar', views.reserva_clase),
-    path('calendar/<int:id_clase>', views.get_clases)
+    path('calendar/<int:id_clase>', views.get_clases),
+    path('calendar', views.reserva_clases)
 ]
