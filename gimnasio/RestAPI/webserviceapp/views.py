@@ -58,29 +58,22 @@ def obtener_listado_pedidos(request):
 @csrf_exempt
 def get_clases(request, id_clase):
     if request.method == 'GET':
-        try:
-            clase = Tclases.objects.get(id=id_clase)
-        except Tclases.DoesNotExist:
-            return JsonResponse({'error': 'Clase not found'}, status=400)
-
+        clase = Tclases.objects.get(id=id_clase)
         respuesta_final = {
             "id": clase.id,
             "nombre": clase.nombre,
             "imagen": clase.imagen,
             "horarios": clase.horarios
         }
-        return JsonResponse(respuesta_final)
+    return JsonResponse(respuesta_final, safe=False)
 
+def reserva_clases(request)
     elif request.method == 'POST':
         persisted_token = request.headers.get('SessionToken')
         if not persisted_token:
             return JsonResponse({'error': 'SessionToken not found'}, status=401)
-
-        try:
             clase = Tclases.objects.get(id=id_clase)
-        except Tclases.DoesNotExist:
             return JsonResponse({'error': 'Clase not found'}, status=400)
-
         # Validate SessionToken
 
         # Update clase data
